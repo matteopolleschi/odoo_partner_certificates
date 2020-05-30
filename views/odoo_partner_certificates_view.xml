@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- certificates -->
+    <record id="odoo_partner_certificates_action" model="ir.actions.act_window">
+        <field name="name">Certificates</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">odoo_partner.certificates</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new certificate
+            </p>
+        </field>
+    </record>
+
+    <record id="odoo_partner_certificates_view_form" model="ir.ui.view">
+        <field name="name">odoo_partner.certificates.form</field>
+        <field name="model">odoo_partner.certificates</field>
+        <field name="arch" type="xml">
+            <form string="Certificate">
+                <sheet string="Certificate">
+                    <group>
+                        <field name="name"/>
+                        <field name="expiry_date"/>
+                        <field name="issuer"/>
+                    </group>
+                    <notebook>
+                        <page name="attachment" string="Attachments">
+                            <field name="attachment"/>
+                            <!--field name="attachment_ids" context="{'default_owner_model': 'odoo_partner.certificates', 'default_owner_id': id, 'default_owner_field': 'attachment_ids',}"/-->
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="partner_certificates_form_view">
+        <field name="name">partner.certificates</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Certificates">
+                    <group>
+                        <field name="certificate_ids" string="Certificates"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>
