@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- certificates -->
     <record id="odoo_partner_certificates_action" model="ir.actions.act_window">
         <field name="name">Certificates</field>
         <field name="type">ir.actions.act_window</field>
@@ -27,13 +26,25 @@
                         <field name="issuer"/>
                     </group>
                     <notebook>
-                        <page name="attachment" string="Attachments">
-                            <field name="attachment"/>
-                            <!--field name="attachment_ids" context="{'default_owner_model': 'odoo_partner.certificates', 'default_owner_id': id, 'default_owner_field': 'attachment_ids',}"/-->
+                        <page name="attachments" string="Attachments">
+                            <field name="attachments" widget="many2many_binary"/>
                         </page>
                     </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="odoo_partner_certificates_view_tree">
+        <field name="name">odoo_partner.certificates.tree</field>
+        <field name="model">odoo_partner.certificates</field>
+        <field name="arch" type="xml">
+            <tree string="Certificate">
+                <field name="name"/>
+                <field name="expiry_date"/>
+                <field name="issuer"/>
+                <field name="attachments"/>
+            </tree>
         </field>
     </record>
     

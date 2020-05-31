@@ -15,7 +15,7 @@
 
     'category': 'Hidden',
     'version': '1.0',
-    'sequence': 1,
+    'sequence': 2,
 
     'depends': ['base'],
     'data': [

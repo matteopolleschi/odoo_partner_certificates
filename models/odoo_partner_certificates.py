@@ -9,9 +9,8 @@ class Odoo_partner_certificates(models.Model):
     name = fields.Char(string='Name Certificate')
     expiry_date = fields.Date(string='Expiry Date', default=fields.Date.today)
     issuer = fields.Many2one('res.partner', string='Issuer')
-    attachment = fields.Binary(string='Attachments')
-    #attachment_ids = fields.One2many( comodel_name='max.base.multi.attachment', inverse_name='owner_id', string='Attachments', domain=lambda self: [('owner_model', '=', self._name), ('owner_field', '=', 'attachment_ids')], copy=True)
-    
+    attachments = fields.Many2many(comodel_name='ir.attachment', relation='class_ir_attachments_rel', column1='class_id', column2='attachment_id', string='Attachments')
+    expiry_date_reminder = fields.Boolean("Reminder")
 
 
 class Odoo_inherit_partner(models.Model):
