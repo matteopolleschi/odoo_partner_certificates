@@ -24,11 +24,12 @@ class Odoo_inherit_partner(models.Model):
     @api.model
     def _cron_expiry_date_reminder(self):
         su_id =self.env['res.partner'].browse(SUPERUSER_ID)
+        today_date = datetime.now().date()
         for partner in self.search([]):
-            if partner.company == True and partner.certificate_ids:
+            if partner.certificate_ids:
                 for certificate in partner.certificate_ids:
-                    if certificate.expiry_date == fields.Date.today and certificate.reminder == False:
-                        template_id = self.env['ir.model.data'].get_object_reference('certificate_expiry_date_reminder', 'email_template_edi_expiry_date_reminder')[1]
+                    if certificate.expiry_date == today_date and certificate.reminder == False:
+                        template_id = self.env['ir.model.data'].get_object_reference('odoo_partner_certificates', 'email_template_edi_expiry_date_reminder')[1]
                         email_template_obj = self.env['mail.template'].browse(template_id)
                         if template_id:
                             values = email_template_obj.generate_email(partner.id, fields=None)
@@ -41,6 +42,5 @@ class Odoo_inherit_partner(models.Model):
                             if msg_id:
                                 mail_mail_obj.sudo().send([msg_id])
                         certificate.reminder = True
-            else : raise exceptions.UserError("The partner don't have a company !!")
 
         return True

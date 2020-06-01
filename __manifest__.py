@@ -6,8 +6,10 @@
 
     'description': """
         This module upgrade the partner module by adding:
-            - create an certificates
-            - one partner have multiple certificates
+            - create a certificate
+            - a partner can have multiple certificates
+            - a certificate contains multiple attachments
+            - when certificate is expired company receive a reminder mail
     """,
 
     'author': "Mounir lahsini",
