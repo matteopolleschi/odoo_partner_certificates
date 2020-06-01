@@ -24,6 +24,7 @@
                         <field name="name"/>
                         <field name="expiry_date"/>
                         <field name="issuer"/>
+                        <field name="reminder"/>
                     </group>
                     <notebook>
                         <page name="attachments" string="Attachments">
@@ -44,6 +45,7 @@
                 <field name="expiry_date"/>
                 <field name="issuer"/>
                 <field name="attachments"/>
+                <field name="reminder"/>
             </tree>
         </field>
     </record>

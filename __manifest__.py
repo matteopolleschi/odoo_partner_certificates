@@ -21,8 +21,10 @@
     'data': [
         'security/ir.model.access.csv',
         'views/odoo_partner_certificates_view.xml',
+        'views/expiry_date_reminder_cron.xml',
+        'data/expiry_date_reminder_action_data.xml'
     ],
-    'demo': [
-    ],
+    'demo': [],
     'installable': True,
+    'auto_install': False,
 }
