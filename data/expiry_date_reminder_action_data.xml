@@ -33,6 +33,7 @@
                     </div>
                     <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
                         <p>Best Regards,</p>
+                        <p>${object.company_id.name}</p>
                     </div>
                 </div>
                 ]]>

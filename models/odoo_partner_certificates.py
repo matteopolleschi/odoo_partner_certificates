@@ -32,9 +32,12 @@ class Odoo_inherit_partner(models.Model):
                         template_id = self.env['ir.model.data'].get_object_reference('odoo_partner_certificates', 'email_template_edi_expiry_date_reminder')[1]
                         email_template_obj = self.env['mail.template'].browse(template_id)
                         if template_id:
+                            if partner.parent_id.email:
+                                recepient_email = partner.parent_id.email
+                            else : recepient_email = partner.email
                             values = email_template_obj.generate_email(partner.id, fields=None)
                             values['email_from'] = su_id.email
-                            values['email_to'] = partner.email
+                            values['email_to'] = recepient_email 
                             values['res_id'] = False
                             values['author_id'] = self.env['res.users'].browse(request.env.uid).partner_id.id
                             mail_mail_obj = self.env['mail.mail']

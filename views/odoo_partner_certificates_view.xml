@@ -24,7 +24,7 @@
                         <field name="name"/>
                         <field name="expiry_date"/>
                         <field name="issuer"/>
-                        <field name="reminder"/>
+                        <field name="reminder" readonly="1"/>
                     </group>
                     <notebook>
                         <page name="attachments" string="Attachments">
