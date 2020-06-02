@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="odoo_partner_certificates_template_1" model="odoo_partner.certificates.template">
+        <field name="name">First Template</field>
+        <field name="description">Description of First Template</field>
+    </record>
+
+    <record id="odoo_partner_certificates_template_2" model="odoo_partner.certificates.template">
+        <field name="name">Second Template</field>
+        <field name="description">Description of Second Template</field>
+    </record>
+
+</odoo>
