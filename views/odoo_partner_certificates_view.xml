@@ -21,8 +21,8 @@
             <form string="Certificate">
                 <sheet string="Certificate">
                     <group>
-                        <field name="name"/>
                         <field name="template_id"/>
+                        <field name="name"/>
                         <field name="expiry_date"/>
                         <field name="issuer"/>
                         <field name="reminder" readonly="1"/>

@@ -9,13 +9,18 @@ class Odoo_partner_certificates(models.Model):
     _name = 'odoo_partner.certificates'
     _description = "Odoo partner certificates"
 
-    name = fields.Char(string='Name Certificate')
+    name = fields.Char(string='Name Certificate', required=True)
     template_id = fields.Many2one('odoo_partner.certificates.template', string='Certificate Template', required=True)
     issuer = fields.Many2one('res.partner', string='Issuer')
     expiry_date = fields.Date(string='Expiry Date', default=fields.Date.today)
     attachments = fields.Many2many(comodel_name='ir.attachment', relation='class_ir_attachments_rel', column1='class_id', column2='attachment_id', string='Attachments')
     reminder = fields.Boolean(string="Reminder", default=False)
     partner_id = fields.Many2one('res.partner', ondelete='cascade', string="Partner")
+
+    @api.onchange('template_id')
+    def onchange_template_id(self):
+        if self.template_id:
+            self.name = self.template_id.name
 
 
 class Odoo_partner_certificates_template(models.Model):
