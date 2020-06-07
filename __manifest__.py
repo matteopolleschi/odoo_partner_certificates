@@ -12,7 +12,7 @@
             - when certificate is expired company receive a reminder mail
     """,
 
-    'author': "Mounir lahsini",
+    'author': "Daphne Solutions",
     'website': "https://github.com/matteopolleschi/odoo_partner_certificates",
 
     'category': 'Hidden',

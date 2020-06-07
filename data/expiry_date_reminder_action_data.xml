@@ -4,22 +4,22 @@
         
         <record id="email_template_edi_expiry_date_reminder" model="mail.template">
             <field name="name">Expiry Date Reminder...!!</field>
-            <field name="subject">Today Due Certificate -${object.certificate_ids.expiry_date or 'n/a' }</field>
+            <field name="subject">Scadenze del ${object.certificate_ids.expiry_date or 'n/a' }</field>
             <field name="model_id" ref="odoo_partner_certificates.model_res_partner" />
             <field name="auto_delete" eval="True" />
             <field name="body_html"><![CDATA[
                 <div class="page">
                     <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
-                        <p>Hello ${object.name},</p>
-                        <p> This Email Is To Remind You That You Have Certificate(s) Expiring Today. </p>
+                        <p>Gentile ${object.name},</p>
+                        <p>Di seguito la lista delle scadenze odierne.</p>
                     </div>
                     <div>
                        <table class="table table-condensed">
                              <thead>
                                 <tr>
-                                    <th style="background-color:#9b9da0 !important;">Certificate Name</th>
-                                    <th style="background-color:#9b9da0 !important;">Expiry Date</th>
-                                    <th style="background-color:#9b9da0 !important;">Issuer</th>
+                                    <th style="background-color:#9b9da0 !important;">Nome</th>
+                                    <th style="background-color:#9b9da0 !important;">Scadenza</th>
+                                    <th style="background-color:#9b9da0 !important;">Emesso da</th>
                                 </tr>
                              </thead>
                              <tbody>
@@ -32,8 +32,7 @@
                        </table>
                     </div>
                     <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
-                        <p>Best Regards,</p>
-                        <p>${object.company_id.name}</p>
+                        <p>Cordiali saluti</p>
                     </div>
                 </div>
                 ]]>
