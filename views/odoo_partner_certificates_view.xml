@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="odoo_partner_certificates_action" model="ir.actions.act_window">
-        <field name="name">Certificates</field>
+        <field name="name">Scadenze</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">odoo_partner.certificates</field>
         <field name="view_type">form</field>
@@ -96,9 +96,9 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page string="Certificates">
+                <page string="Scadenze">
                     <group>
-                        <field name="certificate_ids" string="Certificates"/>
+                        <field name="certificate_ids" string="Scadenze"/>
                     </group>
                 </page>
             </notebook>
