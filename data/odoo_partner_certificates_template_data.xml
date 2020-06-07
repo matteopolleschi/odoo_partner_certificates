@@ -143,7 +143,8 @@
     <record id="odoo_partner_certificates_template_28" model="odoo_partner.certificates.template">
         <field name="name">Formazione uso piattaforme mobili elevabili</field>
         <field name="description">Formazione uso piattaforme mobili elevabili</field>
-
+    </record>
+        
     <record id="odoo_partner_certificates_template_29" model="odoo_partner.certificates.template">
         <field name="name">Patentino gas tossici</field>
         <field name="description">Patentino gas tossici</field>
