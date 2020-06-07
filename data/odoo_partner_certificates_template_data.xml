@@ -119,35 +119,41 @@
     <record id="odoo_partner_certificates_template_24" model="odoo_partner.certificates.template">
         <field name="name">Formazione specifica (modulo 1)</field>
         <field name="description">Formazione specifica (modulo 1)</field>
-
-    <record id="odoo_partner_certificates_template_24" model="odoo_partner.certificates.template">
-        <field name="name">Formazione specifica (modulo 2)</field>
-        <field name="description">Formazione specifica (modulo 2)</field>
-
-    <record id="odoo_partner_certificates_template_24" model="odoo_partner.certificates.template">
-        <field name="name">Formazione specifica (modulo 3)</field>
-        <field name="description">Formazione specifica (modulo 3)</field>
+    </record>
 
     <record id="odoo_partner_certificates_template_25" model="odoo_partner.certificates.template">
-        <field name="name">Formazione uso escavatori</field>
-        <field name="description">Formazione uso escavatori</field>
+        <field name="name">Formazione specifica (modulo 2)</field>
+        <field name="description">Formazione specifica (modulo 2)</field>
+    </record>
 
     <record id="odoo_partner_certificates_template_26" model="odoo_partner.certificates.template">
-        <field name="name">Formazione uso macchine</field>
-        <field name="description">Formazione uso macchine</field>
+        <field name="name">Formazione specifica (modulo 3)</field>
+        <field name="description">Formazione specifica (modulo 3)</field>
+    </record>
 
     <record id="odoo_partner_certificates_template_27" model="odoo_partner.certificates.template">
-        <field name="name">Formazione uso piattaforme</field>
-        <field name="description">Formazione uso piattaforme</field>
+        <field name="name">Formazione uso escavatori</field>
+        <field name="description">Formazione uso escavatori</field>
+    </record>
 
     <record id="odoo_partner_certificates_template_28" model="odoo_partner.certificates.template">
-        <field name="name">Formazione uso piattaforme mobili elevabili</field>
-        <field name="description">Formazione uso piattaforme mobili elevabili</field>
+        <field name="name">Formazione uso macchine</field>
+        <field name="description">Formazione uso macchine</field>
     </record>
-        
+    
     <record id="odoo_partner_certificates_template_29" model="odoo_partner.certificates.template">
-        <field name="name">Patentino gas tossici</field>
-        <field name="description">Patentino gas tossici</field>
+        <field name="name">Formazione uso piattaforme</field>
+        <field name="description">Formazione piattaforme</field>
     </record>
-
+    
+    <record id="odoo_partner_certificates_template_30" model="odoo_partner.certificates.template">
+        <field name="name">Formazione uso piattaforme mobili elevabili</field>
+        <field name="description">Formazione piattaforme mobili elevabili</field>
+    </record>
+    
+    <record id="odoo_partner_certificates_template_31" model="odoo_partner.certificates.template">
+        <field name="name">Formazione gas tossici</field>
+        <field name="description">Formazione gas tossici</field>
+    </record>
+    
 </odoo>
