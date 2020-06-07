@@ -12,9 +12,9 @@ class Odoo_partner_certificates(models.Model):
     name = fields.Char(string='Name Certificate', required=True)
     template_id = fields.Many2one('odoo_partner.certificates.template', string='Certificate Template', required=True)
     issuer = fields.Many2one('res.partner', string='Issuer')
-    expiry_date = fields.Date(string='Expiry Date', default=fields.Date.today)
-    attachments = fields.Many2many(comodel_name='ir.attachment', relation='class_ir_attachments_rel', column1='class_id', column2='attachment_id', string='Attachments')
-    reminder = fields.Boolean(string="Reminder", default=False)
+    expiry_date = fields.Date(string='Scadenza', default=fields.Date.today)
+    attachments = fields.Many2many(comodel_name='ir.attachment', relation='class_ir_attachments_rel', column1='class_id', column2='attachment_id', string='Documenti	')
+    reminder = fields.Boolean(string="Notificato", default=False)
     partner_id = fields.Many2one('res.partner', ondelete='cascade', string="Partner")
 
     @api.onchange('template_id')
@@ -27,14 +27,14 @@ class Odoo_partner_certificates_template(models.Model):
     _name = "odoo_partner.certificates.template"
     _description = "Odoo partner certificates Template"
 
-    name = fields.Char(string='Name Certificate', required=True)
+    name = fields.Char(string='Nome', required=True)
     description = fields.Text(string="Description")
 
 
 class Odoo_inherit_partner(models.Model):
     _inherit = 'res.partner'
 
-    certificate_ids = fields.One2many('odoo_partner.certificates', 'partner_id', string='Certificates')
+    certificate_ids = fields.One2many('odoo_partner.certificates', 'partner_id', string='Scadenze')
 
     @api.model
     def _cron_expiry_date_reminder(self):
