@@ -52,106 +52,101 @@
     </record>
 
     <record id="odoo_partner_certificates_template_11" model="odoo_partner.certificates.template">
-        <field name="name">AA</field>
-        <field name="description">BB</field>
-    </record>
-
-    <record id="odoo_partner_certificates_template_12" model="odoo_partner.certificates.template">
         <field name="name">Formazione conduzione gru per autocarro</field>
         <field name="description">Formazione conduzione gru per autocarro</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_13" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_12" model="odoo_partner.certificates.template">
         <field name="name">Formazione dirigenti</field>
         <field name="description">Formazione dirigenti</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_14" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_13" model="odoo_partner.certificates.template">
         <field name="name">Formazione extra</field>
         <field name="description">Formazione extra</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_15" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_14" model="odoo_partner.certificates.template">
         <field name="name">Formazione lavori elettrici</field>
         <field name="description">Formazione lavori elettrici</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_16" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_15" model="odoo_partner.certificates.template">
         <field name="name">Formazione lavori in altezza</field>
         <field name="description">Formazione lavori in altezza</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_17" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_16" model="odoo_partner.certificates.template">
         <field name="name">Formazione montaggio ponteggi</field>
         <field name="description">Formazione montaggio ponteggi</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_18" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_17" model="odoo_partner.certificates.template">
         <field name="name">Formazione movimentazione pazienti (MAPO)</field>
         <field name="description">Formazione movimentazione pazienti (MAPO)	</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_19" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_18" model="odoo_partner.certificates.template">
         <field name="name">Formazione preposti</field>
         <field name="description">Formazione preposti</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_20" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_19" model="odoo_partner.certificates.template">
         <field name="name">Formazione prevenzione incendi</field>
         <field name="description">Formazione prevenzione incendi</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_21" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_20" model="odoo_partner.certificates.template">
         <field name="name">Formazione primo soccorso</field>
         <field name="description">Formazione primo soccorso</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_22" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_21" model="odoo_partner.certificates.template">
         <field name="name">Formazione RLS</field>
         <field name="description">Formazione RLS</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_23" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_22" model="odoo_partner.certificates.template">
         <field name="name">Formazione RSPP</field>
         <field name="description">Formazione RSPP</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_24" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_23" model="odoo_partner.certificates.template">
         <field name="name">Formazione specifica (modulo 1)</field>
         <field name="description">Formazione specifica (modulo 1)</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_25" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_24" model="odoo_partner.certificates.template">
         <field name="name">Formazione specifica (modulo 2)</field>
         <field name="description">Formazione specifica (modulo 2)</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_26" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_25" model="odoo_partner.certificates.template">
         <field name="name">Formazione specifica (modulo 3)</field>
         <field name="description">Formazione specifica (modulo 3)</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_27" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_26" model="odoo_partner.certificates.template">
         <field name="name">Formazione uso escavatori</field>
         <field name="description">Formazione uso escavatori</field>
     </record>
 
-    <record id="odoo_partner_certificates_template_28" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_27" model="odoo_partner.certificates.template">
         <field name="name">Formazione uso macchine</field>
         <field name="description">Formazione uso macchine</field>
     </record>
     
-    <record id="odoo_partner_certificates_template_29" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_28" model="odoo_partner.certificates.template">
         <field name="name">Formazione uso piattaforme</field>
         <field name="description">Formazione piattaforme</field>
     </record>
     
-    <record id="odoo_partner_certificates_template_30" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_29" model="odoo_partner.certificates.template">
         <field name="name">Formazione uso piattaforme mobili elevabili</field>
         <field name="description">Formazione piattaforme mobili elevabili</field>
     </record>
     
-    <record id="odoo_partner_certificates_template_31" model="odoo_partner.certificates.template">
+    <record id="odoo_partner_certificates_template_30" model="odoo_partner.certificates.template">
         <field name="name">Formazione gas tossici</field>
         <field name="description">Formazione gas tossici</field>
     </record>
