@@ -12,7 +12,7 @@ class Odoo_partner_certificates(models.Model):
     name = fields.Char(string='Nome', required=True)
     template_id = fields.Many2one('odoo_partner.certificates.template', string='Tipo', required=True)
     issuer = fields.Many2one('res.partner', string='Emesso da')
-    expiry_date = fields.Date(string='Scadenza', default=fields.Date.today)
+    expiry_date = fields.Date(string='Scadenza')
     attachments = fields.Many2many(comodel_name='ir.attachment', relation='class_ir_attachments_rel', column1='class_id', column2='attachment_id', string='Documenti	')
     reminder = fields.Boolean(string="Notificato", default=False)
     partner_id = fields.Many2one('res.partner', ondelete='cascade', string="Partner")
