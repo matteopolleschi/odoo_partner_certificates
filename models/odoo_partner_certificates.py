@@ -35,6 +35,7 @@ class Odoo_inherit_partner(models.Model):
     _inherit = 'res.partner'
 
     certificate_ids = fields.One2many('odoo_partner.certificates', 'partner_id', string='Scadenze')
+    quiz_api_id = fields.Integer(string='Quiz api id')
 
     @api.model
     def _cron_expiry_date_reminder(self):
