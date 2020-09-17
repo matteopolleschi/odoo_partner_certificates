@@ -3,6 +3,7 @@ from odoo import SUPERUSER_ID
 from datetime import datetime, timedelta
 from odoo import api, fields, models, exceptions, _
 from odoo.http import request
+import requests
 
 
 class Odoo_partner_certificates(models.Model):
@@ -16,6 +17,46 @@ class Odoo_partner_certificates(models.Model):
     attachments = fields.Many2many(comodel_name='ir.attachment', relation='class_ir_attachments_rel', column1='class_id', column2='attachment_id', string='Documenti	')
     reminder = fields.Boolean(string="Notificato", default=False)
     partner_id = fields.Many2one('res.partner', ondelete='cascade', string="Partner")
+
+    def get_quiz_token(self):
+        url = "https://api.editricetoni.it/api/token/"
+        payload = "{\"email\":\"school1@yopmail.com\",\"password\":\"school1\"}"
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Token'
+            }
+        response = requests.request("POST", url, headers=headers, data=payload)
+        token = response.json()
+        if 'access' in token.keys():
+            result = token['access']
+        else : result = False
+        return result
+
+    @api.model
+    def create(self, vals):
+        certificate = super(Odoo_partner_certificates, self).create(vals)
+        partner = self.env['res.partner'].search([('id', '=', certificate.partner_id.id )])
+        if certificate.expiry_date == False and partner.quiz_api_id == 0:
+            token = self.get_quiz_token()
+            if token != False :
+                url = "https://api.editricetoni.it/user/"
+                #payload = '{ \"email\": \"'+partner.email+'\",\"password\":\"admin\",\"first_name\":\"'+partner.firstname+'\",\"last_name\":\"'+partner.lastname+'\",\"username\":\"'+partner.email+'\", \"odoo_id\": '+str(partner.id)+', \"parent\": 2, \"quiz_type\": 2}'
+                payload = '{ \"email\": \"'+partner.email+'\",\"password\":\"admin\",\"first_name\":\"'+partner.firstname+'\",\"last_name\":\"'+partner.lastname+'\",\"username\":\"'+partner.email+'\", \"parent\": 2, \"quiz_type\": 2}'
+                headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+                response = requests.request("POST", url, headers=headers, data=payload)
+                quiz = response.json()
+                if 'id' in quiz.keys(): 
+                    partner.write({'quiz_api_id': quiz['id']})
+                # For Testing
+                self.env['res.partner'].create({'name': 'Create user 123', 'comment': response.json()})
+        return certificate
+
+    def write(self, vals):
+        certificate = super(Odoo_partner_certificates, self).write(vals)
+        return certificate
 
     @api.onchange('template_id')
     def onchange_template_id(self):
@@ -63,3 +104,29 @@ class Odoo_inherit_partner(models.Model):
                         certificate.reminder = True
 
         return True
+
+    #def get_quiz_token(self):
+    #    url = "https://api.editricetoni.it/api/token/"
+    #    payload = "{\"email\":\"school1@yopmail.com\",\"password\":\"school1\"}"
+    #    headers = {
+    #        'Content-Type': 'application/json',
+    #        'Authorization': 'Token'
+    #        }
+    #    response = requests.request("POST", url, headers=headers, data=payload)
+    #    token = response.json()
+    #    if 'access' in token.keys():
+    #        result = token['access']
+    #    else : result = False
+    #    return result
+
+    #@api.multi
+    #def unlink(self):
+    #    partner = super(Odoo_inherit_partner, self).unlink()
+    #    token = self.get_quiz_token()
+    #    if token != False :
+    #       url = "https://api.editricetoni.it/user/deactivate/"+id+"/"
+    #       payload = "{\"email\":\"school1@yopmail.com\",\"password\":\"school1\"}"
+    #       headers= {}
+    #       response = requests.request("POST", url, headers=headers, data = payload)
+    #       print(response.text.encode('utf8'))
+    #    return partner

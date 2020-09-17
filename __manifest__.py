@@ -19,7 +19,7 @@
     'version': '1.0',
     'sequence': 2,
 
-    'depends': ['base', 'contacts'],
+    'depends': ['base', 'contacts', 'partner_firstname'],
     'data': [
         'security/ir.model.access.csv',
         'views/odoo_partner_certificates_view.xml',
