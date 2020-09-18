@@ -105,14 +105,13 @@
         </field>
     </record>
 
-    <!-- For Testing -->
     <record model="ir.ui.view" id="partner_quiz_id_form_view">
         <field name="name">partner.quiz_id</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <field name="category_id" position="after">
-                <field name="quiz_api_id"/>
+                <field name="quiz_api_id" invisible="1"/>
             </field>
         </field>
     </record>

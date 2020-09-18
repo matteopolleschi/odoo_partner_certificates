@@ -40,8 +40,7 @@ class Odoo_partner_certificates(models.Model):
             token = self.get_quiz_token()
             if token != False :
                 url = "https://api.editricetoni.it/user/"
-                #payload = '{ \"email\": \"'+partner.email+'\",\"password\":\"admin\",\"first_name\":\"'+partner.firstname+'\",\"last_name\":\"'+partner.lastname+'\",\"username\":\"'+partner.email+'\", \"odoo_id\": '+str(partner.id)+', \"parent\": 2, \"quiz_type\": 2}'
-                payload = '{ \"email\": \"'+partner.email+'\",\"password\":\"admin\",\"first_name\":\"'+partner.firstname+'\",\"last_name\":\"'+partner.lastname+'\",\"username\":\"'+partner.email+'\", \"parent\": 2, \"quiz_type\": 2}'
+                payload = '{ \"email\": \"'+partner.email+'\",\"password\":\"admin\",\"first_name\":\"'+partner.firstname+'\",\"last_name\":\"'+partner.lastname+'\",\"username\":\"'+partner.email+'\", \"odoo_id\": '+str(partner.id)+', \"parent\": 2, \"quiz_type\": 2}'
                 headers = {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token
@@ -50,11 +49,10 @@ class Odoo_partner_certificates(models.Model):
                 quiz = response.json()
                 if 'id' in quiz.keys(): 
                     partner.write({'quiz_api_id': quiz['id']})
-                # For Testing
-                self.env['res.partner'].create({'name': 'Create user 123', 'comment': response.json()})
         return certificate
 
     def write(self, vals):
+        # if certificate is updated and the expiry_date field is removed or added.
         certificate = super(Odoo_partner_certificates, self).write(vals)
         return certificate
 
@@ -105,28 +103,38 @@ class Odoo_inherit_partner(models.Model):
 
         return True
 
-    #def get_quiz_token(self):
-    #    url = "https://api.editricetoni.it/api/token/"
-    #    payload = "{\"email\":\"school1@yopmail.com\",\"password\":\"school1\"}"
-    #    headers = {
-    #        'Content-Type': 'application/json',
-    #        'Authorization': 'Token'
-    #        }
-    #    response = requests.request("POST", url, headers=headers, data=payload)
-    #    token = response.json()
-    #    if 'access' in token.keys():
-    #        result = token['access']
-    #    else : result = False
-    #    return result
+    def get_quiz_token(self):
+        url = "https://api.editricetoni.it/api/token/"
+        payload = "{\"email\":\"school1@yopmail.com\",\"password\":\"school1\"}"
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Token'
+            }
+        response = requests.request("POST", url, headers=headers, data=payload)
+        token = response.json()
+        if 'access' in token.keys():
+            result = token['access']
+        else : result = False
+        return result
 
-    #@api.multi
-    #def unlink(self):
-    #    partner = super(Odoo_inherit_partner, self).unlink()
-    #    token = self.get_quiz_token()
-    #    if token != False :
-    #       url = "https://api.editricetoni.it/user/deactivate/"+id+"/"
-    #       payload = "{\"email\":\"school1@yopmail.com\",\"password\":\"school1\"}"
-    #       headers= {}
-    #       response = requests.request("POST", url, headers=headers, data = payload)
-    #       print(response.text.encode('utf8'))
-    #    return partner
+    @api.multi
+    def unlink(self):
+        for record in self:
+            quiz_id = record.quiz_api_id
+            if quiz_id != 0:
+                token = record.get_quiz_token()
+                if token != False :
+                    url = "https://api.editricetoni.it/user/deactivate/"+str(quiz_id)+"/"
+                    payload = "{\"email\":\"school1@yopmail.com\",\"password\":\"school1\"}"
+                    headers = {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    }
+                    response = requests.request("POST", url, headers=headers, data=payload)
+        partner = super(Odoo_inherit_partner, self).unlink()
+        return partner
+
+    def write(self, vals):
+        # if partner is updated and the quiz_api_id field is defined.
+        partner = super(Odoo_inherit_partner, self).write(vals)
+        return partner
