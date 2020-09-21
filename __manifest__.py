@@ -25,6 +25,7 @@
         'views/odoo_partner_certificates_view.xml',
         'views/expiry_date_reminder_cron.xml',
         'data/expiry_date_reminder_action_data.xml',
+        'data/send_password_action_data.xml',
         'data/odoo_partner_certificates_template_data.xml'
     ],
     'demo': [],
