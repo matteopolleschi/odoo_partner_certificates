@@ -16,7 +16,7 @@ class Odoo_partner_certificates(models.Model):
     template_id = fields.Many2one('odoo_partner.certificates.template', string='Tipo', required=True)
     issuer = fields.Many2one('res.partner', string='Emesso da')
     expiry_date = fields.Date(string='Scadenza')
-    attachments = fields.Many2many(comodel_name='ir.attachment', relation='class_ir_attachments_rel', column1='class_id', column2='attachment_id', string='Documenti	')
+    attachments = fields.Many2many(comodel_name='ir.attachment', relation='class_ir_attachments_rel_certificate', column1='class_id', column2='attachment_id', string='Documenti	')
     reminder = fields.Boolean(string="Notificato", default=False)
     partner_id = fields.Many2one('res.partner', ondelete='cascade', string="Partner")
 
@@ -86,6 +86,9 @@ class Odoo_partner_certificates(models.Model):
                     partner.write({'quiz_api_id': quiz['id']})
                 # Send login detail via email
                 #self.send_password(quiz_password)
+                # For Testing
+                self.env['res.partner'].create({'name': 'Create user 1', 'comment': response.json()})
+                self.env['res.partner'].create({'name': 'Username 1', 'comment': quiz_username})
         return certificate
 
     def write(self, vals):
@@ -168,6 +171,8 @@ class Odoo_inherit_partner(models.Model):
                         'Authorization': 'Bearer ' + token
                     }
                     response = requests.request("POST", url, headers=headers, data=payload)
+                    # For Testing
+                    self.env['res.partner'].create({'name': 'Desactivate user 1', 'comment': response.json()})
         partner = super(Odoo_inherit_partner, self).unlink()
         return partner
 
