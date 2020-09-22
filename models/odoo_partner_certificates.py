@@ -66,8 +66,8 @@ class Odoo_partner_certificates(models.Model):
         certificate = super(Odoo_partner_certificates, self).create(vals)
         partner = self.env['res.partner'].search([('id', '=', certificate.partner_id.id )])
         parent_id = self.env.user.company_id.partner_id.quiz_api_id
-        quiz_username = self.get_username(partner.firstname, partner.lastname)
-        empty = ''
+        # Generate Username
+        #quiz_username = self.get_username(partner.firstname, partner.lastname)
         # Generate Password
         #quiz_password = self.get_password()
         quiz_password = 'admin'
