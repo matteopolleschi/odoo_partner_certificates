@@ -116,4 +116,18 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="partner_full_name_form_view">
+        <field name="name">partner.fullname</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="firstname" position="attributes">
+                <attribute name="required">True</attribute>
+            </field>
+            <field name="lastname" position="attributes">
+                <attribute name="required">True</attribute>
+            </field>
+        </field>
+    </record>
+
 </odoo>
