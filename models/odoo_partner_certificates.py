@@ -82,7 +82,7 @@ class Odoo_partner_certificates(models.Model):
                 if response.text.encode('utf8') != '[]':
                     quiz_username = self.get_username(partner.firstname, partner.lastname)
         # Secure Email 
-        if partner.email != '': partner_email = partner.email
+        if partner.email == '': partner_email = partner.email
         else : partner_email = ""
         # Generate Password
         quiz_password = self.get_password()
