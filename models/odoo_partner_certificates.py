@@ -82,7 +82,7 @@ class Odoo_partner_certificates(models.Model):
                 if response.text.encode('utf8') != '[]':
                     quiz_username = self.get_username(partner.firstname, partner.lastname)
         # Secure Email 
-        if partner.email: partner_email = partner.email
+        if partner.email != '': partner_email = '\"email\": \"'+partner.email+'\",
         else : partner_email = ""
         # Generate Password
         quiz_password = self.get_password()
@@ -90,7 +90,7 @@ class Odoo_partner_certificates(models.Model):
             token = self.get_quiz_token()
             if token != False :
                 url = "https://api.editricetoni.it/user/"
-                payload = '{ \"email\": \"'+partner_email+'\",\"password\":\"'+quiz_password+'\",\"first_name\":\"'+partner.firstname+'\",\"last_name\":\"'+partner.lastname+'\",\"username\":\"'+quiz_username+'\", \"odoo_id\": '+str(partner.id)+', \"parent\": '+str(parent_id)+', \"quiz_type\": 2}'
+                payload = '{ '+partner_email+'\"password\":\"'+quiz_password+'\",\"first_name\":\"'+partner.firstname+'\",\"last_name\":\"'+partner.lastname+'\",\"username\":\"'+quiz_username+'\", \"odoo_id\": '+str(partner.id)+', \"parent\": '+str(parent_id)+', \"quiz_type\": 2}'
                 headers = {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token
