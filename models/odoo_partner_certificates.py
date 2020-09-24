@@ -20,9 +20,9 @@ class Odoo_partner_certificates(models.Model):
     reminder = fields.Boolean(string="Notificato", default=False)
     partner_id = fields.Many2one('res.partner', ondelete='cascade', string="Partner")
 
-    def get_password():
+    def get_password(self):
         password_chars = string.ascii_letters + string.digits
-        result = ''.join((random.choice(password_chars) for i in range(9)))
+        result = ''.join((random.choice(password_chars) for i in range(20)))
         return result
     
     def send_password(self, password):
@@ -67,16 +67,30 @@ class Odoo_partner_certificates(models.Model):
         partner = self.env['res.partner'].search([('id', '=', certificate.partner_id.id )])
         parent_id = self.env.user.company_id.partner_id.quiz_api_id
         # Generate Username
-        if partner.firstname and partner.lastname: 
+        quiz_username = ''
+        if partner.firstname != '' and partner.lastname != '': 
             quiz_username = self.get_username(partner.firstname, partner.lastname)
+            token = self.get_quiz_token()
+            if token != False :
+                url = "https://api.editricetoni.it/user/?username=" + quiz_username
+                payload  = {}
+                headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                    }
+                response = requests.request("GET", url, headers=headers, data = payload)
+                if response.text.encode('utf8') != '[]':
+                    quiz_username = self.get_username(partner.firstname, partner.lastname)
+        # Secure Email 
+        if partner.email != '': partner_email = partner.email
+        else : partner_email = ""
         # Generate Password
-        #quiz_password = self.get_password()
-        quiz_password = 'admin'
+        quiz_password = self.get_password()
         if certificate.expiry_date == False and partner.quiz_api_id == 0:
             token = self.get_quiz_token()
             if token != False :
                 url = "https://api.editricetoni.it/user/"
-                payload = '{ \"email\": \"'+partner.email+'\",\"password\":\"'+quiz_password+'\",\"first_name\":\"'+partner.firstname+'\",\"last_name\":\"'+partner.lastname+'\",\"username\":\"'+partner.email+'\", \"odoo_id\": '+str(partner.id)+', \"parent\": '+str(parent_id)+', \"quiz_type\": 2}'
+                payload = '{ \"email\": \"'+partner_email+'\",\"password\":\"'+quiz_password+'\",\"first_name\":\"'+partner.firstname+'\",\"last_name\":\"'+partner.lastname+'\",\"username\":\"'+quiz_username+'\", \"odoo_id\": '+str(partner.id)+', \"parent\": '+str(parent_id)+', \"quiz_type\": 2}'
                 headers = {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token
