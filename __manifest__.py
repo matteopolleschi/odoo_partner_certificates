@@ -24,6 +24,7 @@
         'security/ir.model.access.csv',
         'views/odoo_partner_certificates_view.xml',
         'views/expiry_date_reminder_cron.xml',
+        'views/base_config_api_view.xml',
         'data/expiry_date_reminder_action_data.xml',
         'data/send_password_action_data.xml',
         'data/odoo_partner_certificates_template_data.xml'

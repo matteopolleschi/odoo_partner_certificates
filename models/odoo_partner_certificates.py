@@ -19,28 +19,28 @@ class Odoo_partner_certificates(models.Model):
     attachments = fields.Many2many(comodel_name='ir.attachment', relation='class_ir_attachments_rel_certificate', column1='class_id', column2='attachment_id', string='Documenti	')
     reminder = fields.Boolean(string="Notificato", default=False)
     partner_id = fields.Many2one('res.partner', ondelete='cascade', string="Partner")
+    
+    #def send_password(self, password):
+    #    template_id = self.env['ir.model.data'].get_object_reference('odoo_partner_certificates', 'email_template_edi_send_password')[1]
+    #    email_template_obj = self.env['mail.template'].browse(template_id)
+    #    if template_id:
+    #        if parent_id.email:
+    #            values = email_template_obj.generate_email(partner_id.id, fields=None)
+    #            values['email_from'] = su_id.email
+    #            values['email_to'] = parent_id.email
+    #            values['res_id'] = False
+    #            values['author_id'] = self.env['res.users'].browse(request.env.uid).partner_id.id
+    #            mail_mail_obj = self.env['mail.mail']
+    #            msg_id = mail_mail_obj.sudo().create(values)
+    #            if msg_id:
+    #                mail_mail_obj.sudo().send([msg_id])
+    #    return True
 
     def get_password(self):
         password_chars = string.ascii_letters + string.digits
         result = ''.join((random.choice(password_chars) for i in range(20)))
         return result
-    
-    def send_password(self, password):
-        template_id = self.env['ir.model.data'].get_object_reference('odoo_partner_certificates', 'email_template_edi_send_password')[1]
-        email_template_obj = self.env['mail.template'].browse(template_id)
-        if template_id:
-            if parent_id.email:
-                values = email_template_obj.generate_email(partner_id.id, fields=None)
-                values['email_from'] = su_id.email
-                values['email_to'] = parent_id.email
-                values['res_id'] = False
-                values['author_id'] = self.env['res.users'].browse(request.env.uid).partner_id.id
-                mail_mail_obj = self.env['mail.mail']
-                msg_id = mail_mail_obj.sudo().create(values)
-                if msg_id:
-                    mail_mail_obj.sudo().send([msg_id])
-        return True
-    
+
     def get_username(self, firstname, lastname):
         username = firstname +'.'+ lastname +'.'
         code = ''.join(random.choice(string.digits) for i in range(4))
@@ -48,8 +48,9 @@ class Odoo_partner_certificates(models.Model):
         return result
 
     def get_quiz_token(self):
+        res = self.env['res.config.settings'].get_values()
         url = "https://api.editricetoni.it/api/token/"
-        payload = "{\"email\":\"school1@yopmail.com\",\"password\":\"school1\"}"
+        payload = '{\"email\":\"'+res['quiz_api_username']+'\",\"password\":\"'+res['quiz_api_password']+'\"}'
         headers = {
             'Content-Type': 'application/json',
             'Authorization': 'Token'
@@ -160,8 +161,9 @@ class Odoo_inherit_partner(models.Model):
         return True
 
     def get_quiz_token(self):
+        res = self.env['res.config.settings'].get_values()
         url = "https://api.editricetoni.it/api/token/"
-        payload = "{\"email\":\"school1@yopmail.com\",\"password\":\"school1\"}"
+        payload = '{\"email\":\"'+res['quiz_api_username']+'\",\"password\":\"'+res['quiz_api_password']+'\"}'
         headers = {
             'Content-Type': 'application/json',
             'Authorization': 'Token'
@@ -175,13 +177,14 @@ class Odoo_inherit_partner(models.Model):
 
     @api.multi
     def unlink(self):
+        res = self.env['res.config.settings'].get_values()
         for record in self:
             quiz_id = record.quiz_api_id
             if quiz_id != 0:
                 token = record.get_quiz_token()
                 if token != False :
                     url = "https://api.editricetoni.it/user/deactivate/"+str(quiz_id)+"/"
-                    payload = "{\"email\":\"school1@yopmail.com\",\"password\":\"school1\"}"
+                    payload = '{\"email\":\"'+res['quiz_api_username']+'\",\"password\":\"'+res['quiz_api_password']+'\"}'
                     headers = {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer ' + token
