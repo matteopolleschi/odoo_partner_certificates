@@ -60,7 +60,19 @@ class Odoo_partner_certificates(models.Model):
             result = token['access']
         else : result = False
         return result
-
+    
+    def search_username(self, username):
+        token = self.get_quiz_token()
+        url = "https://api.editricetoni.it/user/?username=" + username
+        payload  = {}
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+            }
+        response = requests.request("GET", url, headers=headers, data = payload)
+        result = response.json()
+        return result
+    
     @api.model
     def create(self, vals):
         certificate = super(Odoo_partner_certificates, self).create(vals)
@@ -69,18 +81,10 @@ class Odoo_partner_certificates(models.Model):
         # Generate Username
         quiz_username = ''
         if partner.firstname != '' and partner.lastname != '': 
-            quiz_username = self.get_username(partner.firstname, partner.lastname)
-            token = self.get_quiz_token()
-            if token != False :
-                url = "https://api.editricetoni.it/user/?username=" + quiz_username
-                payload  = {}
-                headers = {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
-                    }
-                response = requests.request("GET", url, headers=headers, data = payload)
-                if response.text.encode('utf8') != '[]':
-                    quiz_username = self.get_username(partner.firstname, partner.lastname)
+            quiz_username = partner.firstname +"."+ partner.lastname
+            username_test = self.search_username(quiz_username)
+            if bool(username_test) == True:
+                quiz_username = self.get_username(partner.firstname, partner.lastname)
         # Secure Email 
         if partner.email == False: partner_email = ""
         else : partner_email = '\"email\": \"'+partner.email+'\",'
