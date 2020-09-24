@@ -5,11 +5,13 @@
     'summary': """Odoo Partner Certificates Module""",
 
     'description': """
-        This module upgrade the partner module by adding:
-            - create a certificate
-            - a partner can have multiple certificates
-            - a certificate contains multiple attachments
-            - when certificate is expired company receive a reminder mail
+        This module upgrade the module res_partner by adding:
+            - create a certificate (name, expiry date, issuer, reminder and attachments).
+            - a partner can have multiple certificates.
+            - a certificate contains multiple attachments.
+            - when certificate is expired company receive a reminder mail.
+            - When partner is created a user is created for it in quiz.
+            - When partner is deleted the user is desactivated in quiz.
     """,
 
     'author': "Daphne Solutions",
@@ -26,7 +28,7 @@
         'views/expiry_date_reminder_cron.xml',
         'views/base_config_api_view.xml',
         'data/expiry_date_reminder_action_data.xml',
-        'data/send_password_action_data.xml',
+        #'data/send_password_action_data.xml',
         'data/odoo_partner_certificates_template_data.xml'
     ],
     'demo': [],
