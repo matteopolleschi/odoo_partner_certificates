@@ -82,8 +82,8 @@ class Odoo_partner_certificates(models.Model):
                 if response.text.encode('utf8') != '[]':
                     quiz_username = self.get_username(partner.firstname, partner.lastname)
         # Secure Email 
-        if partner.email != '': partner_email = '\"email\": \"'+partner.email+'\",'
-        else : partner_email = ""
+        if partner.email == False: partner_email = ""
+        else : partner_email = '\"email\": \"'+partner.email+'\",'
         # Generate Password
         quiz_password = self.get_password()
         if certificate.expiry_date == False and partner.quiz_api_id == 0:
