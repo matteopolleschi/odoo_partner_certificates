@@ -18,7 +18,7 @@
     'website': "https://github.com/matteopolleschi/odoo_partner_certificates",
 
     'category': 'Hidden',
-    'version': '2.0',
+    'version': '3.0',
     'sequence': 2,
 
     'depends': ['base', 'contacts', 'partner_firstname'],
