@@ -96,7 +96,7 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page string="Scadenze">
+                <page string="Scadenze" attrs="{'invisible': [('is_company', '=', True)]}">
                     <group>
                         <field name="certificate_ids" string="Scadenze"/>
                     </group>
