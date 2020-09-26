@@ -48,7 +48,7 @@ class Odoo_partner_certificates(models.Model):
         return result
 
     def get_quiz_token(self):
-        res = self.env['res.config.settings'].get_values()
+        res = self.env['res.config.settings'].sudo().get_values()
         url = "https://api.editricetoni.it/api/token/"
         payload = '{\"email\":\"'+res['quiz_api_username']+'\",\"password\":\"'+res['quiz_api_password']+'\"}'
         headers = {
@@ -161,7 +161,7 @@ class Odoo_inherit_partner(models.Model):
         return True
 
     def get_quiz_token(self):
-        res = self.env['res.config.settings'].get_values()
+        res = self.env['res.config.settings'].sudo().get_values()
         url = "https://api.editricetoni.it/api/token/"
         payload = '{\"email\":\"'+res['quiz_api_username']+'\",\"password\":\"'+res['quiz_api_password']+'\"}'
         headers = {
@@ -177,7 +177,7 @@ class Odoo_inherit_partner(models.Model):
 
     @api.multi
     def unlink(self):
-        res = self.env['res.config.settings'].get_values()
+        res = self.env['res.config.settings'].sudo().get_values()
         for record in self:
             quiz_id = record.quiz_api_id
             if quiz_id != 0:
