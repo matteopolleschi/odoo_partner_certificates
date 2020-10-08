@@ -21,12 +21,13 @@
     'version': '3.0',
     'sequence': 2,
 
-    'depends': ['base', 'contacts', 'partner_firstname'],
+    'depends': ['base', 'web', 'contacts', 'partner_firstname'],
     'data': [
         'security/ir.model.access.csv',
         'views/odoo_partner_certificates_view.xml',
         'views/expiry_date_reminder_cron.xml',
         'views/base_config_api_view.xml',
+        'views/assets.xml',
         'data/expiry_date_reminder_action_data.xml',
         #'data/send_password_action_data.xml',
         'data/odoo_partner_certificates_template_data.xml'
