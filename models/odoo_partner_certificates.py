@@ -175,7 +175,7 @@ class Odoo_inherit_partner(models.Model):
         else : result = False
         return result
 
-    @api.multi
+
     def unlink(self):
         res = self.env['res.config.settings'].sudo().get_values()
         for record in self:

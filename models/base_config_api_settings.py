@@ -9,7 +9,7 @@ class ResConfigApiSettings(models.TransientModel):
     quiz_api_username = fields.Char(string='Username')
     quiz_api_password = fields.Char(string='Password')
 
-    @api.multi
+
     def set_values(self):
         super(ResConfigApiSettings, self).set_values()
         self.env['ir.config_parameter'].sudo().set_param('quiz_api_username', self.quiz_api_username)

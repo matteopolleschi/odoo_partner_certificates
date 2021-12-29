@@ -18,11 +18,12 @@
     'website': "https://github.com/matteopolleschi/odoo_partner_certificates",
 
     'category': 'Hidden',
-    'version': '3.0',
+    'version': '4.0',
     'sequence': 2,
 
     'depends': ['base', 'web', 'contacts', 'partner_firstname'],
     'data': [
+        'security/odoo_partner_certificates_security.xml',
         'security/ir.model.access.csv',
         'views/odoo_partner_certificates_view.xml',
         'views/expiry_date_reminder_cron.xml',
