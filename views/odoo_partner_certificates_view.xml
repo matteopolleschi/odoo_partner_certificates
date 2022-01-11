@@ -173,7 +173,7 @@
         </field>
     </record>
 
-    <menuitem name="Certificates" id="menu_certificates" parent="base.next_id_2" action="odoo_partner_certificates_action"/>
-    <menuitem name="Certificate Templates" id="menu_certificate_templates" parent="base.next_id_2" action="odoo_partner_certificates_template_action"/>
+    <menuitem name="Certificates" id="menu_certificates" parent="base.menu_automation" action="odoo_partner_certificates_action"/>
+    <menuitem name="Certificate Templates" id="menu_certificate_templates" parent="base.menu_automation" action="odoo_partner_certificates_template_action"/>
 
 </odoo>
